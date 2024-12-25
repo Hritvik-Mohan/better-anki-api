@@ -1,3 +1,32 @@
-node_modules
-# Keep environment variables out of version control
+# Node modules
+/node_modules
+
+# TypeScript output
+/dist
+/build
+
+# Environment files
 .env
+.env.local
+.env.*.local
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Prisma Migrations
+/prisma/migrations
+
+# Log files
+*.log
+
+# IDE / editor directories
+.vscode/
+.idea/
+.history/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+/coverage
