@@ -14,8 +14,71 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
+  id  Int @id @default(autoincrement())
+  email String @unique
+  password String
+  username String @unique
+  fullName String?
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  decks Deck[]
+  sessions StudySession[]
+  reviews Review[]
+  stats UserStats?
+}
+
+model UserStats {
+  id Int @id @default(autoincrement())
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id])
+  learnedCards Int @default(0)
+  pendingReviews Int @default(0)
+  lastStudyDate DateTime?
+  totalStudyTime Int @default(0) 
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Deck {
+  id Int @id @default(autoincrement())
+  title String
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cards Card[]
+}
+
+model Card {
+  id Int @id @default(autoincrement())
+  front String
+  back String
+  deckId Int
+  deck Deck @relation(fields: [deckId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Review Review[]
+}
+
+model StudySession {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  startTime DateTime @default(now())
+  endTime DateTime?
+  sessionType String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Review {
+  id Int @id @default(autoincrement())
+  cardId Int
+  card Card @relation(fields: [cardId], references: [id])
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  reviewTime DateTime @default(now())
+  reviewResult String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

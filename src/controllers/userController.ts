@@ -13,3 +13,9 @@ export const getProfile = async (req: Request, res: Response): Promise<void> => 
         res.status(500).json({ error: "Internal server error."});
     }
 };
+
+export const updateUserProfile = async (req: Request, res: Response): Promise<void> => {
+}
+
+export const getUserStats = async (req: Request, res: Response): Promise<void> => {
+}
