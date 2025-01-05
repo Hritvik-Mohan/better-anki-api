@@ -4,7 +4,8 @@ import userRoutes from "./routes/userRoutes";
 import deckRoutes from "./routes/deckRoutes";
 import cardRoutes from "./routes/cardRoutes";
 import studySessionRoutes from "./routes/studySessionRoutes";
-import reviewAndProgressRoutes from "./routes/reviewAndProgressRoutes";
+import reviewRoutes from "./routes/reviewRoutes";
+import progressRoutes from "./routes/progressRoutes"
 import syncRoutes from "./routes/syncRoutes";
 import searchRoutes from "./routes/searchRoutes";
 
@@ -27,8 +28,8 @@ app.use("/api/cards", cardRoutes);
 app.use("/api/study/session", studySessionRoutes);
 
 // Review and Progress
-app.use("/api/review", reviewAndProgressRoutes);
-app.use("/api/progress", reviewAndProgressRoutes);
+app.use("/api/review", reviewRoutes);
+app.use("/api/progress", progressRoutes);
 
 // Synchronization
 app.use("/api/sync", syncRoutes);
