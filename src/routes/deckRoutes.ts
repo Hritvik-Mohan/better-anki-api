@@ -1,8 +1,11 @@
 import express from "express";
 import { createDeck, deleteDeck, getAllDecks, getDeckById, updateDeck } from "../controllers/deckController";
 import { createCard, getAllCards } from "../controllers/cardController";
+import { authMiddleware } from "../middleware/authMiddleware";
 
 const router = express.Router();
+
+router.use(authMiddleware);
 
 router.get("/", getAllDecks);
 router.post("/", createDeck);
