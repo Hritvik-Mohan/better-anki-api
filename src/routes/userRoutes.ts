@@ -1,11 +1,11 @@
 import express from "express";
-import { getProfile } from "../controllers/userController";
-import { authenticate } from "../middleware/authMiddleware";
+import { getProfile, getUserStats, updateUserProfile } from "../controllers/userController";
 
 const router = express.Router();
 
-router.get("/profile", authenticate, getProfile);
-router.put("/", authenticate, )
+router.get("/profile", getProfile);
+router.put("/", updateUserProfile);
+router.get("/stats", getUserStats)
 
 export default router;
 
