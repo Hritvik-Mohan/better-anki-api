@@ -9,6 +9,7 @@
 .env
 .env.local
 .env.*.local
+.env.production
 
 # TypeScript cache
 *.tsbuildinfo
