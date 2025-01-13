@@ -2,9 +2,13 @@ import { Request, Response } from "express";
 import prisma from "../prisma/prismaClient";
 
 export const getProfile = async (req: Request, res: Response): Promise<void> => {
+    if (!req.user) {
+        res.status(401).json({ error: "Unauthorized" });
+        return;
+    }
     try {
         const user = await prisma.user.findUnique({
-            where: { id: req.userId },
+            where: { id: req.user.id },
             select: { id: true, email: true, createdAt: true },
         });
 

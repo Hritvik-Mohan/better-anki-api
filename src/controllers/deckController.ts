@@ -2,11 +2,7 @@ import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-interface AuthenticateRequest extends Request {
-    user: { id: number }
-}
-
-export const getAllDecks = async (req: AuthenticateRequest, res: Response): Promise<void> => {
+export const getAllDecks = async (req: Request, res: Response): Promise<void> => {
     const userId = req.user?.id;
 
     try {

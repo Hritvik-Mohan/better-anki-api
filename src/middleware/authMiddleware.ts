@@ -5,7 +5,11 @@ interface JwtPayload {
     userId: number;
 }
 
-export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
+interface AuthenticatedRequest extends Request {
+    user?: { id: number };
+}
+
+export const authMiddleware = (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -17,7 +21,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction):
 
     try {
         const payload = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
-        req.userId = payload.userId;
+        req.user = {id: payload.userId};
         next();
     } catch (err) {
         res.status(401).json({ error: 'Invalid token' });

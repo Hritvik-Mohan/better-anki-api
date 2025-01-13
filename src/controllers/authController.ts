@@ -4,12 +4,12 @@ import jwt from 'jsonwebtoken';
 import prisma from '../prisma/prismaClient'
 
 export const register = async (req: Request, res: Response): Promise<void> => {
-    const { email, password } = req.body;
+    const { email, password, username } = req.body;
 
     console.log(email, password);
 
-    if (!email || !password) {
-        res.status(400).json({ error: "Email and password are required. "});
+    if (!email || !password || !username) {
+        res.status(400).json({ error: "Email, password, and username are required. "});
         return;
     }
 
@@ -19,6 +19,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
             data: {
                 email,
                 password: hashedPassword,
+                username,
             },
         });
 
