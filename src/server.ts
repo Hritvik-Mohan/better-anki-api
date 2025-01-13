@@ -1,7 +1,9 @@
 import app from "./app";
 import dotenv from "dotenv";
 
-dotenv.config();
+const environment = process.env.NODE_ENV || "local";
+
+dotenv.config({ path: `.env.${environment}`});
 
 const PORT = process.env.PORT || 5000;
 

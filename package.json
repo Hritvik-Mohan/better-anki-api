@@ -5,7 +5,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "prisma migrate deploy && node dist/server.js"
+    "dev": "nodemon src/server.ts",
+    "prestart:local":"tsc",
+    "prestart:production":"tsc",
+    "migrate": "prisma migrate deploy",
+    "start:local": "NODE_ENV=local node dist/server.js",
+    "start:production": "NODE_ENV=production node dist/server.js"
   },
   "keywords": [],
   "author": "",
